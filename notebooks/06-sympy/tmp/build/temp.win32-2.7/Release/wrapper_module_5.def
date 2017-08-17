@@ -1,0 +1,3 @@
+LIBRARY wrapper_module_5.pyd
+EXPORTS
+initwrapper_module_5

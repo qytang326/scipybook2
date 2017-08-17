@@ -1,0 +1,7 @@
+Type: IPython Notebook Extension
+Name: Scientific Computing With Python V2 extensions
+Description: 《Pythonk科学计算》第二版的Notebook插件
+Link: https://github.com/ruoyu0088/nbextensions
+Icon: icon.jpg
+Main: main.js
+Compatibility: 3.x

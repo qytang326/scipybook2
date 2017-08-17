@@ -1,0 +1,3 @@
+LIBRARY wrapper_module_1.pyd
+EXPORTS
+initwrapper_module_1
