@@ -1,0 +1,7 @@
+Type: IPython Notebook Extension
+Name: Table of Content
+Description: Show Table of Content of the Notebook
+Link: https://github.com/minrk/ipython_extensions/tree/master/nbextensions
+Icon: icon.png
+Main: toc.js
+Compatibility: 3.x

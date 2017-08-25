@@ -1,0 +1,11 @@
+{
+    "display_name": "Python3-64bit", 
+    "language": "python", 
+    "argv": [
+        "C:\\WinPython-64bit-3.4.3.3\\scripts\\python.bat", 
+        "-m", 
+        "IPython.kernel", 
+        "-f", 
+        "{connection_file}"
+    ]
+}

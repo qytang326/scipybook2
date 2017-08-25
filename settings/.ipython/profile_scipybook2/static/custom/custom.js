@@ -1,0 +1,1 @@
+// activate extensions only after Notebook is initialized

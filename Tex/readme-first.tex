@@ -1,0 +1,528 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{readme-first}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Python科学计算
+演示程序使用说明}\label{pythonux79d1ux5b66ux8ba1ux7b97-ux6f14ux793aux7a0bux5e8fux4f7fux7528ux8bf4ux660e}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{subprocess}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{from} \PY{n+nn}{os} \PY{k}{import} \PY{n}{path}
+        \PY{k+kn}{import} \PY{n+nn}{re}
+        \PY{c+c1}{\PYZsh{}from IPython.nbformat import read}
+        \PY{k+kn}{from} \PY{n+nn}{nbformat} \PY{k}{import} \PY{n}{read}
+\end{Verbatim}
+
+
+    本文件夹保存本书所有章节对应的IPython
+Notebook文件。为了正确显示其中的SVG图表，需要运行下面的程序``Trust''所有的Notebook：
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{for} \PY{n}{folder}\PY{p}{,} \PY{n}{subfolders}\PY{p}{,} \PY{n}{filenames} \PY{o+ow}{in} \PY{n}{os}\PY{o}{.}\PY{n}{walk}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{filename} \PY{o+ow}{in} \PY{n}{filenames}\PY{p}{:}
+                \PY{n}{fullpath} \PY{o}{=} \PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{folder}\PY{p}{,} \PY{n}{filename}\PY{p}{)}
+                \PY{k}{if} \PY{n}{fullpath}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.ipynb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{}subprocess.call([\PYZdq{}jupyter\PYZdq{}, \PYZdq{}trust\PYZdq{}, fullpath, \PYZdq{}\PYZhy{}\PYZhy{}profile=scipybook2\PYZdq{}])}
+                    \PY{n}{subprocess}\PY{o}{.}\PY{n}{call}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{jupyter}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{trust}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fullpath}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\item
+  通过\url{examples.ipynb}可以运行本书提供的所有实例程序。
+\item
+  通过\href{../../nbextensions/}{nbextensions}可以开关Notebook的所有Javascript插件。
+\item
+  本书采用Notebook编写，请打开\href{01-intro/notebook-train.ipynb}{IPython
+  Notebook操作练习}学习Notebook的基本操作。
+\item
+  请打开\href{01-intro/scpy2-magics.ipynb}{本书提供的魔法命令}查看本书新增的所有魔法命令。
+\item
+  运行下面的程序可以得到所有章节对应的Notebook文件链接：
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{links} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{folder}\PY{p}{,} \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{filenames} \PY{o+ow}{in} \PY{n}{os}\PY{o}{.}\PY{n}{walk}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{filename} \PY{o+ow}{in} \PY{n}{filenames}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{}if re.match(r\PYZdq{}\PYZbs{}w+\PYZhy{}[0\PYZhy{}9a\PYZhy{}zA\PYZhy{}Z]\PYZbs{}d\PYZbs{}d\PYZhy{}.+?\PYZbs{}.ipynb\PYZdl{}\PYZdq{}, filename):}
+                 \PY{k}{if} \PY{n}{re}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{w+\PYZhy{}[0\PYZhy{}9]}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{d}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{d\PYZhy{}+}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{w+}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{.ipynb\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{filename}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{fullpath} \PY{o}{=} \PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{folder}\PY{p}{,} \PY{n}{filename}\PY{p}{)}
+                     \PY{n}{book} \PY{o}{=} \PY{n}{read}\PY{p}{(}\PY{n}{fullpath}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+                     \PY{k}{for} \PY{n}{cell} \PY{o+ow}{in} \PY{n}{book}\PY{o}{.}\PY{n}{cells}\PY{p}{:}
+                         \PY{k}{if} \PY{n}{cell}\PY{o}{.}\PY{n}{cell\PYZus{}type} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{markdown}\PY{l+s+s2}{\PYZdq{}} \PY{o+ow}{and} \PY{n}{cell}\PY{o}{.}\PY{n}{source}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZsh{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+                             \PY{n}{title} \PY{o}{=} \PY{n}{cell}\PY{o}{.}\PY{n}{source}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZsh{} }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                             \PY{n}{name} \PY{o}{=} \PY{n}{path}\PY{o}{.}\PY{n}{splitext}\PY{p}{(}\PY{n}{filename}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                             \PY{n}{folder} \PY{o}{=} \PY{n}{path}\PY{o}{.}\PY{n}{basename}\PY{p}{(}\PY{n}{folder}\PY{p}{)}
+                             \PY{n}{link} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+si}{\PYZob{}title\PYZcb{}}\PY{l+s+s2}{ \PYZhy{} }\PY{l+s+si}{\PYZob{}name\PYZcb{}}\PY{l+s+s2}{](}\PY{l+s+si}{\PYZob{}folder\PYZcb{}}\PY{l+s+s2}{/}\PY{l+s+si}{\PYZob{}name\PYZcb{}}\PY{l+s+s2}{.ipynb)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+                                 \PY{n}{title}\PY{o}{=}\PY{n}{title}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{n}{name}\PY{p}{,} \PY{n}{folder}\PY{o}{=}\PY{n}{folder}\PY{p}{)}
+                             \PY{n}{links}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{link}\PY{p}{)}
+                             \PY{k}{break}
+         
+         \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{display\PYZus{}markdown}\PY{p}{,} \PY{n}{Markdown}
+         \PY{n}{display\PYZus{}markdown}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{links}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \href{01-intro/intro-100-whypython.ipynb}{Python科学计算环境的安装与简介
+- intro-100-whypython}
+
+\href{01-intro/intro-200-ipython.ipynb}{IPython Notebook入门 -
+intro-200-ipython}
+
+\href{01-intro/intro-300-library.ipynb}{扩展库介绍 - intro-300-library}
+
+\href{02-numpy/numpy-100-ndarray.ipynb}{NumPy-快速处理数据 -
+numpy-100-ndarray}
+
+\href{02-numpy/numpy-200-ufunc.ipynb}{ufunc函数 - numpy-200-ufunc}
+
+\href{02-numpy/numpy-300-mulitindex.ipynb}{多维数组的下标存取 -
+numpy-300-mulitindex}
+
+\href{02-numpy/numpy-400-functions.ipynb}{庞大的函数库 -
+numpy-400-functions}
+
+\href{02-numpy/numpy-470-gufuncs.ipynb}{广义ufunc函数 -
+numpy-470-gufuncs}
+
+\href{02-numpy/numpy-900-tips.ipynb}{实用技巧 - numpy-900-tips}
+
+\href{03-scipy/scipy-100-intro.ipynb}{SciPy-数值计算库 -
+scipy-100-intro}
+
+\href{03-scipy/scipy-210-optimize.ipynb}{拟合与优化-optimize -
+scipy-210-optimize}
+
+\href{03-scipy/scipy-310-linalg.ipynb}{线性代数-linalg -
+scipy-310-linalg}
+
+\href{03-scipy/scipy-400-stats.ipynb}{统计-stats - scipy-400-stats}
+
+\href{03-scipy/scipy-500-integrate.ipynb}{数值积分-integrate -
+scipy-500-integrate}
+
+\href{03-scipy/scipy-600-signal.ipynb}{信号处理-signal -
+scipy-600-signal}
+
+\href{03-scipy/scipy-700-interpolate.ipynb}{插值-interpolate -
+scipy-700-interpolate}
+
+\href{03-scipy/scipy-810-sparse.ipynb}{稀疏矩阵-sparse -
+scipy-810-sparse}
+
+\href{03-scipy/scipy-900-ndimage.ipynb}{图像处理-ndimage -
+scipy-900-ndimage}
+
+\href{04-matplotlib/matplotlib-100-fastdraw.ipynb}{matplotlib-绘制精美的图表
+- matplotlib-100-fastdraw}
+
+\href{04-matplotlib/matplotlib-200-artists.ipynb}{Artist对象 -
+matplotlib-200-artists}
+
+\href{04-matplotlib/matplotlib-300-transform.ipynb}{坐标变换和注释 -
+matplotlib-300-transform}
+
+\href{04-matplotlib/matplotlib-600-tips.ipynb}{matplotlib技巧集 -
+matplotlib-600-tips}
+
+\href{05-pandas/pandas-100-dataobjects.ipynb}{Pandas-方便的数据分析库 -
+pandas-100-dataobjects}
+
+\href{05-pandas/pandas-200-getset.ipynb}{下标存取 - pandas-200-getset}
+
+\href{05-pandas/pandas-300-io.ipynb}{文件的输入输出 - pandas-300-io}
+
+\href{05-pandas/pandas-400-calculation.ipynb}{数值运算函数 -
+pandas-400-calculation}
+
+\href{05-pandas/pandas-500-string.ipynb}{字符串处理 - pandas-500-string}
+
+\href{05-pandas/pandas-600-datetime.ipynb}{时间序列 -
+pandas-600-datetime}
+
+\href{05-pandas/pandas-700-nan.ipynb}{与\texttt{NaN}相关的函数 -
+pandas-700-nan}
+
+\href{05-pandas/pandas-800-changeshape.ipynb}{改变DataFrame的形状 -
+pandas-800-changeshape}
+
+\href{05-pandas/pandas-900-groupby.ipynb}{分组运算 - pandas-900-groupby}
+
+\href{06-sympy/sympy-100-intro.ipynb}{SymPy-符号运算好帮手 -
+sympy-100-intro}
+
+\href{06-sympy/sympy-200-expression.ipynb}{数学表达式 -
+sympy-200-expression}
+
+\href{06-sympy/sympy-300-calculations.ipynb}{符号运算 -
+sympy-300-calculations}
+
+\href{06-sympy/sympy-400-output.ipynb}{输出符号表达式 -
+sympy-400-output}
+
+\href{06-sympy/sympy-500-mechanics.ipynb}{机械运动模拟 -
+sympy-500-mechanics}
+
+\href{07-traits/traits-100-intro.ipynb}{Traits \&
+TraitsUI-轻松制作图形界面 - traits-100-intro}
+
+\href{07-traits/traits-200-types.ipynb}{Trait类型 - traits-200-types}
+
+\href{07-traits/traits-300-uiintro.ipynb}{TraitsUI入门 -
+traits-300-uiintro}
+
+\href{07-traits/traits-400-handler.ipynb}{用Handler控制界面和模型 -
+traits-400-handler}
+
+\href{07-traits/traits-500-editors.ipynb}{属性编辑器 -
+traits-500-editors}
+
+\href{07-traits/traits-600-example.ipynb}{函数曲线绘制工具 -
+traits-600-example}
+
+\href{08-tvtk_mayavi/tvtk_mayavi-100-intro.ipynb}{TVTK与Mayavi-数据的三维可视化
+- tvtk\_mayavi-100-intro}
+
+\href{08-tvtk_mayavi/tvtk_mayavi-200-pipeline.ipynb}{VTK的流水线(Pipeline)
+- tvtk\_mayavi-200-pipeline}
+
+\href{08-tvtk_mayavi/tvtk_mayavi-300-dataset.ipynb}{数据集 -
+tvtk\_mayavi-300-dataset}
+
+\href{08-tvtk_mayavi/tvtk_mayavi-400-tvtk_and_vtk.ipynb}{TVTK的改进 -
+tvtk\_mayavi-400-tvtk\_and\_vtk}
+
+\href{08-tvtk_mayavi/tvtk_mayavi-600-mlab.ipynb}{用mlab快速绘图 -
+tvtk\_mayavi-600-mlab}
+
+\href{09-opencv/opencv-200-imgprocess.ipynb}{图像处理 -
+opencv-200-imgprocess}
+
+\href{09-opencv/opencv-300-transforms.ipynb}{图像变换 -
+opencv-300-transforms}
+
+\href{09-opencv/opencv-400-identify.ipynb}{图像识别 -
+opencv-400-identify}
+
+\href{09-opencv/opencv-500-shapes.ipynb}{形状与结构分析 -
+opencv-500-shapes}
+
+\href{10-cython/cython-100-compiler.ipynb}{Cython-编译Python程序 -
+cython-100-compiler}
+
+\href{10-cython/cython-200-intro.ipynb}{Cython入门 - cython-200-intro}
+
+\href{10-cython/cython-300-memoryview.ipynb}{高效处理数组 -
+cython-300-memoryview}
+
+\href{10-cython/cython-600-tips.ipynb}{Cython技巧集 - cython-600-tips}
+
+\href{11-examples/examples-000-intro.ipynb}{实例 - examples-000-intro}
+
+\href{11-examples/examples-100-possion.ipynb}{使用泊松混合合成图像 -
+examples-100-possion}
+
+\href{11-examples/examples-300-movielens.ipynb}{推荐算法 -
+examples-300-movielens}
+
+\href{11-examples/examples-400-fft.ipynb}{频域信号处理 -
+examples-400-fft}
+
+\href{11-examples/examples-500-picosat.ipynb}{布尔可满足性问题求解器 -
+examples-500-picosat}
+
+\href{11-examples/examples-600-fractal.ipynb}{分形 -
+examples-600-fractal}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} 
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

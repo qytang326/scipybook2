@@ -1,0 +1,1015 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{examples}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Python科学计算环境的安装与简介}\label{pythonux79d1ux5b66ux8ba1ux7b97ux73afux5883ux7684ux5b89ux88c5ux4e0eux7b80ux4ecb}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{notebooks\textbackslash{}01-intro\textbackslash{}notebook-train.ipynb}：Notebook的操作教程，读者可以使用它练习Notebook的基本操作。
+\end{quote}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.utils.nbmagics}：该模块中定义了本书提供的魔法命令，如果读者使用本书提供的批处理运行Notebook，则该模块已经载入。\texttt{notebooks\textbackslash{}01-intro\textbackslash{}scpy2-magics.ipynb}是这些魔法命令的使用说明。
+\end{quote}
+
+    \subsection{NumPy-快速处理数据}\label{numpy-ux5febux901fux5904ux7406ux6570ux636e}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.numpy.array\PYZus{}index\PYZus{}demo
+\end{Verbatim}
+
+
+    \subsection{SciPy-数值计算库}\label{scipy-ux6570ux503cux8ba1ux7b97ux5e93}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.scipy.hrd\_solver}使用\texttt{csgraph}计算华容道游戏【横刀立马】布局步数最少的解法。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.scipy.hrd\PYZus{}solver
+\end{Verbatim}
+
+
+    \subsection{matplotlib-绘制精美的图表}\label{matplotlib-ux7ed8ux5236ux7cbeux7f8eux7684ux56feux8868}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2/matplotlib/chinese\_fonts.py}：显示系统中所有文件大于1M的TTF字体，请读者使用该程序查询计算机中可使用的中文字体名。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.matplotlib.chinese\PYZus{}fonts
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.common.GraphvizMatplotlib}：将matplotlib的对象关系输出成如\texttt{ref:fig-next}所示的关系图。
+\end{quote}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.matplotlib.svg\_path}：从SVG文件中获取简单的路径信息。可以使用该模块将矢量绘图软件创建的图形转换为\texttt{Patch}对象。
+\end{quote}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.matplotlib.ImageDrawer}：使用\texttt{RendererAgg}直接在图像上绘图，方便用户在图像上标注信息。
+\end{quote}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.matplotlib.key\_event\_show\_key}：显示触发键盘按键事件的按键名称。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.matplotlib.key\PYZus{}event\PYZus{}show\PYZus{}key
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.matplotlib.key\_event\_change\_color}：通过按键修改曲线的颜色。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.matplotlib.key\PYZus{}event\PYZus{}change\PYZus{}color
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.matplotlib.mouse\_event\_show\_info}：显示子图中的鼠标事件的各种信息。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.matplotlib.mouse\PYZus{}event\PYZus{}show\PYZus{}info
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.matplotlib.mouse\_event\_move\_polygon}：演示通过鼠标移动\texttt{Patch}对象。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.matplotlib.mouse\PYZus{}event\PYZus{}move\PYZus{}polygon
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.matplotlib.pick\_event\_demo}：演示绘图对象的点选事件。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.matplotlib.pick\PYZus{}event\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.matplotlib.mouse\_event\_highlight\_curve}：鼠标移动到曲线之上时高亮显示该曲线。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.matplotlib.mouse\PYZus{}event\PYZus{}highlight\PYZus{}curve
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.matplotlib.gui\_panel}：提供了TK与QT界面库的滑标控件面板类\texttt{TkSliderPanel}和\texttt{QtSliderPanel}。\texttt{tk\_panel\_demo.py}和\texttt{qt\_panel\_demo.py}为其演示程序。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.matplotlib.tk\PYZus{}panel\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.matplotlib.qt\PYZus{}panel\PYZus{}demo
+\end{Verbatim}
+
+
+    \subsection{Pandas-方便的数据分析库}\label{pandas-ux65b9ux4fbfux7684ux6570ux636eux5206ux6790ux5e93}
+
+    \subsection{SymPy-符号运算好帮手}\label{sympy-ux7b26ux53f7ux8fd0ux7b97ux597dux5e2eux624b}
+
+    \subsection{Traits \&
+TraitsUI-轻松制作图形界面}\label{traits-traitsui-ux8f7bux677eux5236ux4f5cux56feux5f62ux754cux9762}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{traitsuidemo.demo}：TraitsUI官方提供的演示程序
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m traitsuidemo.demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.traits.traitsui\_editors}：演示TraitsUI提供的各种编辑器的用法。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.traits.traitsui\PYZus{}editors
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.traits.traitsui\_component}：TraitsUI的组件演示程序。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.traits.traitsui\PYZus{}component
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.traits.traitsui\_component\_multi\_view}：使用多个视图显示组件。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.traits.traitsui\PYZus{}component\PYZus{}multi\PYZus{}view 
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.traits.traitsui\_function\_plotter}：采用TraitsUI编写的函数曲线绘制工具。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.traits.traitsui\PYZus{}function\PYZus{}plotter
+\end{Verbatim}
+
+
+    \subsection{TVTK与Mayavi-数据的三维可视化}\label{tvtkux4e0emayavi-ux6570ux636eux7684ux4e09ux7ef4ux53efux89c6ux5316}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.tvtk\_class\_doc}：更方便的TVTK文档查询工具
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.tvtk\PYZus{}class\PYZus{}doc
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.figure\_imagedata}：绘制\texttt{ref:fig-prev}的程序。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.figure\PYZus{}imagedata
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.figure\_rectilineargrid}：绘制\texttt{ref:fig-prev}的程序。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.figure\PYZus{}rectilineargrid
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.figure\_structuredgrid}：绘制\texttt{ref:fig-prev}的程序。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.figure\PYZus{}structuredgrid
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.figure\_polydata}：绘制\texttt{ref:fig-prev}的程序。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.figure\PYZus{}polydata
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.example\_cut\_plane}：切面演示程序
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.example\PYZus{}cut\PYZus{}plane
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.example\_contours}：使用等值面可视化标量场
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.example\PYZus{}contours
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.example\_streamline}：使用流线和箭头可视化矢量场
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.example\PYZus{}streamline
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.example\_tube\_intersection}：计算两个圆管的相贯线，可通过界面中的滑块控件修改圆管的内径和外径。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}83}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.example\PYZus{}tube\PYZus{}intersection
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.mlab\_scalar\_field}：使用等值面、体素呈像和切面可视化标量场
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.mlab\PYZus{}scalar\PYZus{}field
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.mlab\_vector\_field}：使用矢量箭头、切片、等梯度面和流线显示矢量场
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.mlab\PYZus{}vector\PYZus{}field
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.example\_embed\_tube}：演示如何将TVTK的场景嵌入进TraitsUI界面，可通过界面中的控件调节圆管的内径和外径。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.example\PYZus{}tube
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.tvtk.example\_embed\_fieldviewer}：标量场观察器，演示如何将Mayavi的场景嵌入到TraitsUI的界面中
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.tvtk.example\PYZus{}embed\PYZus{}fieldviewer
+\end{Verbatim}
+
+
+    \subsection{OpenCV-图像处理和计算机视觉}\label{opencv-ux56feux50cfux5904ux7406ux548cux8ba1ux7b97ux673aux89c6ux89c9}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.fourcc}：查看选中的视频编码器对应的\texttt{FOURCC}代码。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.fourcc
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.filter2d\_demo}：可通过图形界面自定义卷积核，并实时查看其处理结果。`
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.filter2d\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.morphology\_demo}：演示OpenCV中的各种形态学运算。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.morphology\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.floodfill\_demo}：演示填充函数\texttt{floodFill()}的各个参数的用法。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.floodfill\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.inpaint\_demo}：演示\texttt{inpaint()}的用法，用户用鼠标绘制需要去瑕疵的区域，程序实时显示运算结果。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.inpaint\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.warp\_demo}：仿射变换和透视变换的演示程序，可以通过鼠标拖拽图中蓝色三角形和四边形的顶点，从而决定原始图像各个顶角经过变换之后的坐标。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.warp\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.remap\_demo}：演示\texttt{remap()}的拖拽效果。在图像上按住鼠标左键进行拖拽，每次拖拽完成之后，都将修改原始图像，可以按鼠标右键撤销上次的拖拽操作。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.remap\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.fft2d\_demo}：演示二维离散傅立叶变换，用户在左侧的频域模值图像上用鼠标绘制遮罩区域，右侧的图像为频域信号经过遮罩处理之后所转换成的空域信号。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.fft2d\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.stereo\_demo}：使用双目视觉图像计算深度信息的演示程序。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.stereo\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.hough\_demo}：霍夫变换演示程序，可通过界面调节函数的所有参数。
+\end{quote}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.watershed\_demo}：分水岭算法的演示程序。用鼠标在图像上绘制初始区域，初始区域将使用``当前标签''填充，按鼠标右键切换到下一个标签。每次绘制初始区域之后，将显示分割的结果。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.watershed\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.surf\_demo}：\texttt{SURF}图像匹配演示程序。用鼠标修改右侧图像的四个角的位置计算出透视变换之后的图像，然后在原始图像和变换之后的图像之间搜索匹配点，并计算透视变换的矩阵。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.surf\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.opencv.findcontours\_demo}：轮廓检测演示程序
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.opencv.findcontours\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{codes\textbackslash{}pyopencv\_src}：为了方便读者查看\texttt{cv2}模块的源代码，本书提供了自动生成的源代码。若读者遇到参数类型不确定的情况，可以查看这些文件中相应的函数。
+\end{quote}
+
+    \subsection{Cython-编译Python程序}\label{cython-ux7f16ux8bd1pythonux7a0bux5e8f}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.cython.fast\_curve\_draw}演示使用降采样提高matplotlib的曲线绘制速度。降采样函数为\texttt{scpy2.cython.get\_peaks()}。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.cython.fast\PYZus{}curve\PYZus{}draw
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.cython.multisearch}模块对C语言函数库\texttt{ahocorasick}进行包装。使用该模块可以快速在大量文本中同时搜索多个关键字。
+\end{quote}
+
+    \subsection{实例}\label{ux5b9eux4f8b}
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.examples.possion}：使用TraitsUI编写的泊松混合演示程序。该程序使用\texttt{scpy2.matplotlib.freedraw\_widget}中提供的\texttt{ImageMaskDrawer}在图像上绘制半透明的白色区域。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.examples.possion
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.examples.catenary}：使用TraitsUI制作的悬链线的动画演示程序，可通过界面修改各个参数
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.examples.catenary
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.examples.fft\_demo}：使用该程序可以交互式地观察各种三角波和方波的频谱以及其正弦合成的近似波形
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.examples.fft\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.examples.spectrogram\_realtime}：实时观察声音信号谱图的演示程序，使用TraitsUI、PyAudio等库实现
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.examples.spectrogram\PYZus{}realtime
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.examples.sudoku\_solver}：采用matplotlib制作的数独游戏求解器
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.examples.sudoku\PYZus{}solver
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.examples.automine}：Windows
+7系统下自动扫雷，需将扫雷游戏的难度设置为高级（99个雷），并且关闭``显示动画''、``播放声音''以及``显示提示''等选项。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.examples.automine
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.examples.fractal.mandelbrot\_demo}：使用TraitsUI和matplotlib实时绘制Mandelbrot图像，按住鼠标左键进行平移，使用鼠标滚轴进行缩放。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.examples.fractal.mandelbrot\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{quote}
+\textbf{SOURCE}
+\end{quote}
+
+\begin{quote}
+\texttt{scpy2.examples.fractal.ifs\_demo}：迭代函数分形系统的演示程序，通过修改左侧三角形的顶点实时地计算坐标变换矩阵，并在右侧显示迭代结果。
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{o}{\PYZpc{}}\PY{k}{exec\PYZus{}python} \PYZhy{}m scpy2.examples.fractal.ifs\PYZus{}demo
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} 
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

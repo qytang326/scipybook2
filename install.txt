@@ -1,0 +1,19 @@
+﻿Python科学计算第二版实例安装说明
+
+1. 将winpython.zip解压到C盘根目录下，将scipybook2.zip解压
+   到没有中文空格的路径之下。
+
+2. 运行scipybook2目录下的run_notebook.bat批处理文件运行
+   IPython Notebook服务器。
+
+3. 该服务器会自动打开缺省的浏览器，建议使用Firefox或Chrome
+   浏览。
+   
+4. 在浏览器中打开readme-first.ipynb查看进一步的使用说明。
+   
+** 如果winpython.zip没有解压到C盘根目录下，请打开scipybook2
+目录下的env.bat文件，修改下面的行：
+
+    call C:\WinPython-32bit-2.7.9.2\scripts\env.bat
+    
+   将C:\修改为winpython.zip的解压路径。

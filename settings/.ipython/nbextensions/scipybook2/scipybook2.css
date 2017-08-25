@@ -1,0 +1,91 @@
+/*
+Placeholder for custom user CSS
+
+mainly to be overridden in profile/static/custom/custom.css
+
+This will always be an empty file in IPython
+*/
+/*
+.kernel_idle_icon:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  content: "\f10c";
+}
+.kernel_idle_icon:before.pull-left {
+  margin-right: .3em;
+}
+.kernel_idle_icon:before.pull-right {
+  margin-left: .3em;
+}
+*/
+/*
+.navbar-nav{
+    width:1000px;
+}
+*/
+
+blockquote.info_block{
+    border-width:1px;
+    border-color:#cccccc;
+    border-style: solid;
+    padding:5px;
+    min-height: 70px;
+}
+
+blockquote.info_block .large_font{
+    font-size:60px;
+    color:#FF8C00;
+    float:left;
+    width:60px;
+    height:60px;
+}
+
+blockquote.info_block td{
+    border-style:none;
+}
+
+blockquote.info_block td.first-column{
+    width:70px;
+}
+
+blockquote.info_block tr{
+    border-style:none;
+}
+
+blockquote.info_block table{
+    border-style:none;
+    width: 100%;
+}
+
+    
+blockquote.info_block p{
+    font-size:120%;
+}
+
+.output_area table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.output_area tr,
+.output_area th,
+.output_area td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 1em 2em;
+}
+.output_area td,
+.output_area th {
+  text-align: left;
+  vertical-align: middle;
+  padding: 4px;
+}
+.output_area th {
+  font-weight: bold;
+}

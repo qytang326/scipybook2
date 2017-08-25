@@ -1,0 +1,6 @@
+{
+  "load_extensions": {
+    "scipybook2/main": true, 
+    "toc/toc": true
+  }
+}
